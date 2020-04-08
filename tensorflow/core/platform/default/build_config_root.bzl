@@ -32,6 +32,9 @@ def tf_additional_plugin_deps():
         str(Label("//tensorflow:with_xla_support")): [
             str(Label("//tensorflow/compiler/jit")),
         ],
+        str(Label("//tensorflow:with_gcp_monitoring_support")): [
+            str(Label("@org_tensorflow_cloud//monitoring:gcp_monitoring")),
+        ],
         "//conditions:default": [],
     })
 

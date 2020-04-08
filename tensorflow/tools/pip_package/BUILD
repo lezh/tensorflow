@@ -231,6 +231,10 @@ filegroup(
         "//tensorflow:linux_s390x": [],
         "//tensorflow:windows": [],
         "//tensorflow:no_gcp_support": [],
+        "//third_party/tensorflow:with_gcp_monitoring_support": [
+            "@com_google_googleapis//:LICENSE",
+            "@org_tensorflow_cloud//:LICENSE",
+        ],
         "//conditions:default": [
             "@com_github_googlecloudplatform_google_cloud_cpp//:LICENSE",
         ],

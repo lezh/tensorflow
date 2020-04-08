@@ -2761,7 +2761,12 @@ def if_cuda_or_rocm(if_true, if_false = []):
     })
 
 def tf_monitoring_deps():
-    return []
+    return select({
+        str(Label("//tensorflow:with_gcp_monitoring_support")): [
+            str(Label("@org_tensorflow_cloud//monitoring:gcp_monitoring_protos")),
+        ],
+        "//conditions:default": [],
+    })
 
 def tf_jit_compilation_passes_extra_deps():
     return []
