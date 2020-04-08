@@ -142,3 +142,7 @@ load("//third_party/googleapis:repository_rules.bzl", "config_googleapis")
 
 config_googleapis()
 
+local_repository(
+    name = "org_tensorflow_cloud",
+    path = "../cloud",
+)

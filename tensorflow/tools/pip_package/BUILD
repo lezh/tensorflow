@@ -235,6 +235,16 @@ filegroup(
             "@com_github_googlecloudplatform_google_cloud_cpp//:LICENSE",
         ],
     }) + select({
+        "//tensorflow:android": [],
+        "//tensorflow:ios": [],
+        "//tensorflow:linux_s390x": [],
+        "//tensorflow:windows": [],
+        "//tensorflow:no_gcp_monitoring_support": [],
+        "//conditions:default": [
+            "@com_google_googleapis//:LICENSE",
+            "@org_tensorflow_cloud//:LICENSE",
+        ],
+    }) + select({
         "//tensorflow/core/kernels:xsmm": [
             "@libxsmm_archive//:LICENSE.md",
         ],

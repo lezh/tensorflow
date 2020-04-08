@@ -2761,7 +2761,28 @@ def if_cuda_or_rocm(if_true, if_false = []):
     })
 
 def tf_monitoring_deps():
-    return []
+    return select({
+        clean_dep("//tensorflow:android"): [],
+        clean_dep("//tensorflow:ios"): [],
+        clean_dep("//tensorflow:linux_s390x"): [],
+        clean_dep("//tensorflow:windows"): [],
+        clean_dep("//tensorflow:no_gcp_monitoring_support"): [],
+        clean_dep("//conditions:default"): [
+            clean_dep("@org_tensorflow_cloud//monitoring:gcp_monitoring_protos"),
+        ],
+    })
+
+def tf_pywrap_monitoring_deps():
+    return select({
+        clean_dep("//tensorflow:android"): [],
+        clean_dep("//tensorflow:ios"): [],
+        clean_dep("//tensorflow:linux_s390x"): [],
+        clean_dep("//tensorflow:windows"): [],
+        clean_dep("//tensorflow:no_gcp_monitoring_support"): [],
+        clean_dep("//conditions:default"): [
+            clean_dep("@org_tensorflow_cloud//monitoring:gcp_monitoring"),
+        ],
+    })
 
 def tf_jit_compilation_passes_extra_deps():
     return []

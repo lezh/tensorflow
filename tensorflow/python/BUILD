@@ -16,6 +16,9 @@ load("//tensorflow:tensorflow.bzl", "pybind_extension")
 load("//tensorflow:tensorflow.bzl", "tf_py_wrap_cc")
 
 # buildifier: disable=same-origin-load
+load("//tensorflow:tensorflow.bzl", "tf_pywrap_monitoring_deps")
+
+# buildifier: disable=same-origin-load
 load("//tensorflow:tensorflow.bzl", "cuda_py_test")
 
 # buildifier: disable=same-origin-load
@@ -5897,6 +5900,7 @@ tf_py_wrap_cc(
         "//tensorflow/core/util/tensor_bundle",
         "//tensorflow/compiler/mlir/python:mlir",
     ] + (tf_additional_lib_deps() +
+         tf_pywrap_monitoring_deps() +
          tf_additional_plugin_deps()) + if_ngraph([
         "@ngraph_tf//:ngraph_tf",
     ]) + if_xla_available([
